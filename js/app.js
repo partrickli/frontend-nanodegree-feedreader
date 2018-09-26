@@ -54,7 +54,7 @@ function loadFeed(id, cb) {
     success: function(result, status) {
       var container = $('.feed'),
         title = $('.header-title'),
-        entries = result.feed.entries,
+        entries = result.feed.entries.slice(0, 1),
         entriesLen = entries.length,
         entryTemplate = Handlebars.compile($('.tpl-entry').html());
 

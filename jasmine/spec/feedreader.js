@@ -31,11 +31,25 @@ $(
          * in the allFeeds object and ensures it has a URL defined
          * and that the URL is not empty.
          */
+      it('feed url available', function() {
+        allFeeds.forEach((feed) => {
+          expect(feed.url).toBeDefined();
+          expect(typeof feed.url).toBe('string');
+          expect(feed.url).not.toBe('');
+        });
+      });
 
       /* TODO: Write a test that loops through each feed
          * in the allFeeds object and ensures it has a name defined
          * and that the name is not empty.
          */
+      it('feed name available', function() {
+        allFeeds.forEach((feed) => {
+          expect(feed.name).toBeDefined();
+          expect(typeof feed.name).toBe('string');
+          expect(feed.name).not.toBe('');
+        });
+      });
     });
 
     /* TODO: Write a new test suite named "The menu" */
