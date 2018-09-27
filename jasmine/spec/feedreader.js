@@ -64,13 +64,24 @@ $(
 
         expect(body.classList[0]).toBe('menu-hidden');
       });
-    });
 
-    /* TODO: Write a test that ensures the menu changes
+      /* TODO: Write a test that ensures the menu changes
           * visibility when the menu icon is clicked. This test
           * should have two expectations: does the menu display when
           * clicked and does it hide when clicked again.
           */
+
+      it('menu click', () => {
+        const button = document.querySelector('a.menu-icon-link');
+        const body = document.querySelector('body');
+
+        button.click();
+        expect(body.classList[0]).not.toBeDefined();
+
+        button.click();
+        expect(body.classList[0]).toBe('menu-hidden');
+      });
+    });
 
     /* TODO: Write a new test suite named "Initial Entries" */
 
