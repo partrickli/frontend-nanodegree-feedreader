@@ -82,14 +82,31 @@ $(
       });
     });
 
-    /* TODO: Write a new test suite named "Initial Entries" */
+    /**
+     *  Test suite for initial entries
+     */
+    describe('Initial Entries', () => {
+      /**
+       * call async function loadFeed, and test when it's done.
+       */
+      beforeEach((done) => {
+        loadFeed(0, () => {
+          done();
+        });
+      });
 
-    /* TODO: Write a test that ensures when the loadFeed
-         * function is called and completes its work, there is at least
-         * a single .entry element within the .feed container.
-         * Remember, loadFeed() is asynchronous so this test will require
-         * the use of Jasmine's beforeEach and asynchronous done() function.
-         */
+      it('load feed', (done) => {
+        // Div with class feed should exist
+        const feed = document.querySelector('div.feed');
+        expect(feed).toBeDefined();
+
+        // At least one entry in the feed
+        const entries = feed.querySelectorAll('.entry');
+        expect(entries).toBeDefined();
+        expect(entries.length).toBeGreaterThan(0);
+        done();
+      });
+    });
 
     /* TODO: Write a new test suite named "New Feed Selection" */
 
