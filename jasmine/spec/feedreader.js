@@ -114,5 +114,40 @@ $(
          * by the loadFeed function that the content actually changes.
          * Remember, loadFeed() is asynchronous.
          */
+    describe('New Feed Selection', () => {
+      /**
+       * call async function loadFeed, and test when it's done.
+       */
+      let previousHeaders = [];
+
+      beforeEach((done) => {
+        // memorize previous title of entries
+        const entries = document.querySelectorAll('.entry');
+        previousHeaders = [...entries].map((entry) => {
+          return entry.querySelector('h2').innerText;
+        });
+        // laod new feed
+        const headerTitle = document.querySelector('.header-title').innerText;
+        const feedId = allFeeds.find((feed) => feed.name === headerTitle).id;
+        const newFeedId = (feedId + 1) % allFeeds.length;
+        loadFeed(newFeedId, () => {
+          done();
+        });
+      });
+
+      it('load feed', (done) => {
+        const entries = document.querySelectorAll('.entry');
+        const entryHeaders = [...entries].map((entry) => {
+          return entry.querySelector('h2').innerText;
+        });
+        entryHeaders.forEach((entry, index) => {
+          console.log(entry);
+          console.log(previousHeaders[index]);
+          expect(entry).not.toBe(previousHeaders[index]);
+        });
+
+        done();
+      });
+    });
   })()
 );
