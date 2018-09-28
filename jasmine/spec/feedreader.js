@@ -10,27 +10,24 @@
  */
 $(
   (function() {
-    /* This is our first test suite - a test suite just contains
-    * a related set of tests. This suite is all about the RSS
-    * feeds definitions, the allFeeds variable in our application.
-    */
+    /**
+     * This suite is all about the RSS feeds definitions, the
+     * allFeeds variable in our application.
+     */
     describe('RSS Feeds', function() {
-      /* This is our first test - it tests to make sure that the
-         * allFeeds variable has been defined and that it is not
-         * empty. Experiment with this before you get started on
-         * the rest of this project. What happens when you change
-         * allFeeds in app.js to be an empty array and refresh the
-         * page?
-         */
+      /**
+       * Make sure that the allFeeds variable has been defined
+       * and that it is not empty
+       */
       it('are defined', function() {
         expect(allFeeds).toBeDefined();
         expect(allFeeds.length).not.toBe(0);
       });
 
-      /* TODO: Write a test that loops through each feed
-         * in the allFeeds object and ensures it has a URL defined
-         * and that the URL is not empty.
-         */
+      /** A test that loops through each feed
+       * in the allFeeds object and ensures it has a URL defined
+       * and that the URL is not empty.
+       */
       it('feed url available', function() {
         allFeeds.forEach((feed) => {
           expect(feed.url).toBeDefined();
@@ -39,10 +36,10 @@ $(
         });
       });
 
-      /* TODO: Write a test that loops through each feed
-         * in the allFeeds object and ensures it has a name defined
-         * and that the name is not empty.
-         */
+      /** A test that loops through each feed
+       * in the allFeeds object and ensures it has a name defined
+       * and that the name is not empty.
+       */
       it('feed name available', function() {
         allFeeds.forEach((feed) => {
           expect(feed.name).toBeDefined();
@@ -108,24 +105,20 @@ $(
       });
     });
 
-    /* TODO: Write a new test suite named "New Feed Selection" */
-
-    /* TODO: Write a test that ensures when a new feed is loaded
-         * by the loadFeed function that the content actually changes.
-         * Remember, loadFeed() is asynchronous.
-         */
     describe('New Feed Selection', () => {
-      /**
-       * call async function loadFeed, and test when it's done.
-       */
       let previousHeaders = [];
+      /** A test that ensures when a new feed is loaded
+       * by the loadFeed function that the content actually changes.
+       * Remember, loadFeed() is asynchronous.
+       */
 
       beforeEach((done) => {
-        // memorize previous title of entries
+        // memorize previous title of entries for comparison
         const entries = document.querySelectorAll('.entry');
         previousHeaders = [...entries].map((entry) => {
           return entry.querySelector('h2').innerText;
         });
+
         // laod new feed
         const headerTitle = document.querySelector('.header-title').innerText;
         const feedId = allFeeds.find((feed) => feed.name === headerTitle).id;
