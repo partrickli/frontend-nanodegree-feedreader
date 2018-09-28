@@ -1,6 +1,6 @@
 # Project Overview
 
-In this project you are given a web-based application that reads RSS feeds. A jasmine test is written for testing the project work correctly.
+A web-based application that reads RSS feeds. A jasmine test is written for testing the project work correctly.
 
 # Running
 
