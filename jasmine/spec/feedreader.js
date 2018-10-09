@@ -106,38 +106,35 @@ $(
     });
 
     describe('New Feed Selection', () => {
-      let previousHeaders = [];
+      let firstFeedHeaders = [];
+      let secondFeedHeaders = [];
       /** A test that ensures when a new feed is loaded
        * by the loadFeed function that the content actually changes.
        * Remember, loadFeed() is asynchronous.
        */
 
       beforeEach((done) => {
-        // memorize previous title of entries for comparison
-        const entries = document.querySelectorAll('.entry');
-        previousHeaders = [...entries].map((entry) => {
-          return entry.querySelector('h2').innerText;
-        });
+        loadFeed(0, function() {
+          // memorize previous title of entries for comparison
+          const entries = document.querySelectorAll('.entry');
+          firstFeedHeaders = [...entries].map((entry) => {
+            return entry.querySelector('h2').innerText;
+          });
 
-        // laod new feed
-        const headerTitle = document.querySelector('.header-title').innerText;
-        const feedId = allFeeds.find((feed) => feed.name === headerTitle).id;
-        const newFeedId = (feedId + 1) % allFeeds.length;
-        loadFeed(newFeedId, () => {
-          done();
+          // laod new feed
+          const headerTitle = document.querySelector('.header-title').innerText;
+          loadFeed(1, () => {
+            const entries = document.querySelectorAll('.entry');
+            secondFeedHeaders = [...entries].map((entry) => {
+              return entry.querySelector('h2').innerText;
+            });
+            done();
+          });
         });
       });
 
       it('load feed', (done) => {
-        const entries = document.querySelectorAll('.entry');
-        const entryHeaders = [...entries].map((entry) => {
-          return entry.querySelector('h2').innerText;
-        });
-        entryHeaders.forEach((entry, index) => {
-          console.log(entry);
-          console.log(previousHeaders[index]);
-          expect(entry).not.toBe(previousHeaders[index]);
-        });
+        expect(firstFeedHeaders).not.toEqual(secondFeedHeaders);
 
         done();
       });
