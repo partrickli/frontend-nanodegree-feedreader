@@ -59,7 +59,7 @@ $(
       it('menu hidden', () => {
         const body = document.querySelector('body');
 
-        expect(body.classList[0]).toBe('menu-hidden');
+        expect(body.classList).toContain('menu-hidden');
       });
 
       /**
