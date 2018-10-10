@@ -71,11 +71,11 @@ $(
 
         // Test click menu icon and hide menu
         button.click();
-        expect(body.classList[0]).not.toBeDefined();
+        expect(body.classList.contains('menu-hidden')).toBe(false);
 
         // Test click menu icon again and show menu
         button.click();
-        expect(body.classList[0]).toBe('menu-hidden');
+        expect(body.classList.contains('menu-hidden')).toBe(true);
       });
     });
 
